@@ -4,7 +4,18 @@ from django.contrib import messages # To change ERROR into Danger
 # import environ # To use .env file
 
 # using python-dotenv
+import dj_database_url
+from pathlib import Path
+import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+import environ
+env = environ.Env()
+environ.Env.read_env()
 from dotenv import load_dotenv
+
 load_dotenv()
 
 
@@ -18,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=$!k4_-j55pd3i5ku^0$%h%wp^q)6^#xva$gvf(4*ce)i*99mv'
+SECRET_KEY = '$!k4_-j55pd3i5ku^0$%h%wp^q)6^#xva$gvf(4*ce)i*99mv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
+    'decouple',
     'courses',
     'core',
     
@@ -170,10 +181,16 @@ LOGIN_REDIRECT_URL = '/'
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
-ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300
+    
 # Turn Off Verification Email
 ACCOUNT_EMAIL_VERIFICATION = "optional"  # Or "", "none"
+
+ACCOUNT_RATE_LIMITS = {
+    'login_failed': '5/15m'  # Example: 5 failed logins per 15 minutes
+}
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Provider specific settings
