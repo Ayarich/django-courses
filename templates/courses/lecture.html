@@ -44,14 +44,9 @@
                 {% comment %} <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> {% endcomment %}
                     
                 {% if lecture_selected.lecture_video %}
-                <div class="video-container mb-5">
-                    <iframe src="https://drive.google.com/file/d/{{ lecture_selected.lecture_video }}/preview" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                
+                    <div class="video-container mb-5">
+                        <iframe src="https://www.youtube.com/embed/{{ lecture_selected.lecture_video }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
                 {% endif %}
 
 
