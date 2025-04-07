@@ -56,9 +56,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.github',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -211,4 +214,19 @@ SOCIALACCOUNT_PROVIDERS = {
             'read:org',
         ],
     }
+}
+
+
+
+# Cloudinary Settings
+cloudinary.config( 
+    cloud_name='duj3jcjpq', 
+    api_key='477474899922445', 
+    api_secret='0-EyteQbAInSi8PMrm4ACuaDbeE'
+)
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'duj3jcjpq',
+    'API_KEY': '477474899922445',
+    'API_SECRET': '0-EyteQbAInSi8PMrm4ACuaDbeE',
 }

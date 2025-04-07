@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -14,7 +15,7 @@ class Topic(models.Model):
     topic_slug = models.SlugField(max_length=55, verbose_name="Topic Slug")
     topic_description = models.TextField(blank=True, null=True, verbose_name="Topic Description")
     # topic_parent = models.ForeignKey(Topic, verbose_name="Parent Topic", on_delete=models.DO_NOTHING)
-    topic_image = models.ImageField(upload_to="topics/", blank=True, null=True)
+    topic_image = CloudinaryField('topic_image',folders="topics/", blank=True, null=True)
     topic_is_active = models.CharField(
         choices = IS_ACTIVE,
         default='Yes',
@@ -38,7 +39,7 @@ class Course(models.Model):
     course_slug = models.SlugField(verbose_name="Course Slug")
     course_description = models.TextField(blank=True, null=True, verbose_name="Course Description")
     course_topic = models.ManyToManyField(Topic, verbose_name="Course Topic")
-    course_image = models.ImageField(upload_to="courses/", blank=True, null=True)
+    course_image = CloudinaryField('course_image', folder='courses/', blank=True, null=True)
     course_is_active = models.CharField(
         choices = IS_ACTIVE,
         default = 'Yes',
